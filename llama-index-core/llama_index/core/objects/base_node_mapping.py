@@ -8,6 +8,7 @@ from typing import Any, Dict, Generic, Optional, Sequence, TypeVar
 from llama_index.core.schema import BaseNode, MetadataMode, TextNode
 from llama_index.core.storage.storage_context import DEFAULT_PERSIST_DIR
 from llama_index.core.utils import concat_dirs
+import fickling
 
 DEFAULT_PERSIST_FNAME = "object_node_mapping.pickle"
 
@@ -170,7 +171,7 @@ class SimpleObjectNodeMapping(BaseObjectNodeMapping[Any]):
         obj_node_mapping_path = concat_dirs(persist_dir, obj_node_mapping_fname)
         try:
             with open(obj_node_mapping_path, "rb") as f:
-                simple_object_node_mapping = pickle.load(f)
+                simple_object_node_mapping = fickling.load(f)
         except pickle.PickleError as err:
             raise ValueError("Objs cannot be loaded.") from err
         return simple_object_node_mapping

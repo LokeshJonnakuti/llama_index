@@ -9,6 +9,7 @@ import panel as pn
 import param
 from llama_index.core import VectorStoreIndex
 from llama_index.readers.github import GithubClient, GithubRepositoryReader
+import fickling
 
 # needed because both Panel and GithubRepositoryReader starts up the ioloop
 nest_asyncio.apply()
@@ -191,7 +192,7 @@ class IndexLoader(pn.viewable.Viewer):
         if docs_path.exists():
             self._update_status(LOADING_EXISTING_DOCS)
             with docs_path.open("rb") as f:
-                return pickle.load(f)
+                return fickling.load(f)
 
         self._update_status(LOADING_NEW_DOCS)
         docs = await self._download_docs()
@@ -213,7 +214,7 @@ class IndexLoader(pn.viewable.Viewer):
         if index_path.exists():
             self._update_status(LOADING_EXISTING_INDEX)
             with index_path.open("rb") as f:
-                return pickle.load(f)
+                return fickling.load(f)
 
         self._update_status(LOADING_NEW_INDEX)
         index = await self._create_index(index)
