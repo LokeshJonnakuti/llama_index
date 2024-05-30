@@ -11,6 +11,7 @@ import pickle
 from pathlib import Path
 from typing import Any, List, Optional, cast
 
+import fickling
 import fsspec
 import numpy as np
 from fsspec.implementations.local import LocalFileSystem
@@ -25,7 +26,6 @@ from llama_index.legacy.vector_stores.types import (
     VectorStoreQuery,
     VectorStoreQueryResult,
 )
-import fickling
 
 logger = logging.getLogger()
 
