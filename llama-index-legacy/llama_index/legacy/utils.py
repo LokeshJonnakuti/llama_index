@@ -2,6 +2,7 @@
 
 import asyncio
 import os
+import secrets
 import sys
 import time
 import traceback
@@ -26,7 +27,6 @@ from typing import (
     Union,
     runtime_checkable,
 )
-import secrets
 
 
 class GlobalsHelper:

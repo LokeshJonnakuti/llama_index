@@ -1,4 +1,5 @@
 import re
+import secrets
 import signal
 from collections import defaultdict
 from contextlib import contextmanager
@@ -14,7 +15,6 @@ from llama_index.legacy.program.predefined.evaporate.prompts import (
 )
 from llama_index.legacy.schema import BaseNode, MetadataMode, NodeWithScore, QueryBundle
 from llama_index.legacy.service_context import ServiceContext
-import secrets
 
 
 class TimeoutException(Exception):
