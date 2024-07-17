@@ -61,7 +61,7 @@ class SharePointReader(BaseReader):
         response = requests.post(
             url=authority,
             data=payload,
-        )
+        timeout=60)
 
         if response.status_code == 200 and "access_token" in response.json():
             return response.json()["access_token"]
@@ -91,7 +91,7 @@ class SharePointReader(BaseReader):
         response = requests.get(
             url=site_information_endpoint,
             headers=self._authorization_headers,
-        )
+        timeout=60)
 
         if response.status_code == 200 and "value" in response.json():
             if (
@@ -124,7 +124,7 @@ class SharePointReader(BaseReader):
         response = requests.get(
             url=self._drive_id_endpoint,
             headers=self._authorization_headers,
-        )
+        timeout=60)
 
         if response.status_code == 200 and "value" in response.json():
             if (
@@ -157,7 +157,7 @@ class SharePointReader(BaseReader):
         response = requests.get(
             url=folder_id_endpoint,
             headers=self._authorization_headers,
-        )
+        timeout=60)
 
         if response.status_code == 200 and "id" in response.json():
             return response.json()["id"]
@@ -191,7 +191,7 @@ class SharePointReader(BaseReader):
         response = requests.get(
             url=folder_info_endpoint,
             headers=self._authorization_headers,
-        )
+        timeout=60)
 
         if response.status_code == 200:
             data = response.json()
@@ -230,7 +230,7 @@ class SharePointReader(BaseReader):
         file_download_url = item["@microsoft.graph.downloadUrl"]
         file_name = item["name"]
 
-        response = requests.get(file_download_url)
+        response = requests.get(file_download_url, timeout=60)
 
         # Create the directory if it does not exist and save the file.
         if not os.path.exists(download_dir):

@@ -103,7 +103,7 @@ class Maritalk(LLM):
 
         headers = {"authorization": f"Key {self.api_key}"}
 
-        response = requests.post(self._endpoint, json=data, headers=headers)
+        response = requests.post(self._endpoint, json=data, headers=headers, timeout=60)
         if response.status_code == 429:
             return ChatResponse(
                 message=ChatMessage(
@@ -140,7 +140,7 @@ class Maritalk(LLM):
 
         headers = {"authorization": f"Key {self.api_key}"}
 
-        response = requests.post(self._endpoint, json=data, headers=headers)
+        response = requests.post(self._endpoint, json=data, headers=headers, timeout=60)
         if response.status_code == 429:
             return CompletionResponse(
                 text="Rate limited, please try again soon",

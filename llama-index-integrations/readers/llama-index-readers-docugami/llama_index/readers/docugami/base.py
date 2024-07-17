@@ -184,7 +184,7 @@ class DocugamiReader(BaseReader):
             response = requests.get(
                 url,
                 headers={"Authorization": f"Bearer {self.access_token}"},
-            )
+            timeout=60)
             if response.ok:
                 data = response.json()
                 all_documents.extend(data["documents"])
@@ -207,7 +207,7 @@ class DocugamiReader(BaseReader):
                 url,
                 headers={"Authorization": f"Bearer {self.access_token}"},
                 data={},
-            )
+            timeout=60)
             if response.ok:
                 data = response.json()
                 all_projects.extend(data["projects"])
@@ -233,7 +233,7 @@ class DocugamiReader(BaseReader):
                 url,
                 headers={"Authorization": f"Bearer {self.access_token}"},
                 data={},
-            )
+            timeout=60)
             if response.ok:
                 data = response.json()
                 all_artifacts.extend(data["artifacts"])
@@ -261,7 +261,7 @@ class DocugamiReader(BaseReader):
                     f"{artifact_url}/content",
                     headers={"Authorization": f"Bearer {self.access_token}"},
                     data={},
-                )
+                timeout=60)
 
                 if response.ok:
                     try:
@@ -305,7 +305,7 @@ class DocugamiReader(BaseReader):
             url,
             headers={"Authorization": f"Bearer {self.access_token}"},
             data={},
-        )
+        timeout=60)
 
         if response.ok:
             return self._parse_dgml(
