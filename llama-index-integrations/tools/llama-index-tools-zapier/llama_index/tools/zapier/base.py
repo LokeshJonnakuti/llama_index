@@ -58,8 +58,10 @@ class ZapierToolSpec(BaseToolSpec):
 
     def list_actions(self):
         response = requests.get(
-            "https://nla.zapier.com/api/v1/dynamic/exposed/", headers=self._headers, 
-        timeout=60)
+            "https://nla.zapier.com/api/v1/dynamic/exposed/",
+            headers=self._headers,
+            timeout=60,
+        )
         return response.text
 
     def natural_language_query(self, id: str, **kwargs):
@@ -67,5 +69,6 @@ class ZapierToolSpec(BaseToolSpec):
             ACTION_URL_TMPL.format(action_id=id),
             headers=self._headers,
             data=json.dumps(kwargs),
-        timeout=60)
+            timeout=60,
+        )
         return response.text

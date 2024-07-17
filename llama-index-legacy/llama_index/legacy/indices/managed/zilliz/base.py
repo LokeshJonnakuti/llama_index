@@ -127,7 +127,9 @@ class ZillizCloudPipelineIndex(BaseManagedIndex):
             metadata = {}
         params = {"data": {"doc_url": url}}
         params["data"].update(metadata)
-        response = requests.post(ingestion_url, headers=self.headers, json=params, timeout=60)
+        response = requests.post(
+            ingestion_url, headers=self.headers, json=params, timeout=60
+        )
         if response.status_code != 200:
             raise RuntimeError(response.text)
         response_dict = response.json()
@@ -140,7 +142,9 @@ class ZillizCloudPipelineIndex(BaseManagedIndex):
         deletion_url = f"{self.domain}/{deletion_pipe_id}/run"
 
         params = {"data": {"doc_name": doc_name}}
-        response = requests.post(deletion_url, headers=self.headers, json=params, timeout=60)
+        response = requests.post(
+            deletion_url, headers=self.headers, json=params, timeout=60
+        )
         if response.status_code != 200:
             raise RuntimeError(response.text)
         response_dict = response.json()
@@ -289,7 +293,9 @@ class ZillizCloudPipelineIndex(BaseManagedIndex):
         }
 
         for k, v in params_dict.items():
-            response = requests.post(self.domain, headers=self.headers, json=v, timeout=60)
+            response = requests.post(
+                self.domain, headers=self.headers, json=v, timeout=60
+            )
             if response.status_code != 200:
                 raise RuntimeError(response.text)
             response_dict = response.json()

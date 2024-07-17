@@ -39,10 +39,8 @@ class CogniswitchQueryEngine(BaseQueryEngine):
         """
         data = {"query": query}
         response = requests.post(
-            self.knowledge_request_endpoint,
-            headers=self.headers,
-            data=data,
-        timeout=60)
+            self.knowledge_request_endpoint, headers=self.headers, data=data, timeout=60
+        )
         if response.status_code == 200:
             resp = response.json()
             answer = resp["data"]["answer"]

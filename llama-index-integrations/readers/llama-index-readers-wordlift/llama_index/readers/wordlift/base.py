@@ -77,8 +77,8 @@ class WordLiftLoader(BaseReader):
         try:
             query = self.alter_query()
             response = requests.post(
-                self.endpoint, json={"query": query}, headers=self.headers, 
-            timeout=60)
+                self.endpoint, json={"query": query}, headers=self.headers, timeout=60
+            )
             response.raise_for_status()
             data = response.json()
             if ERRORS_KEY in data:

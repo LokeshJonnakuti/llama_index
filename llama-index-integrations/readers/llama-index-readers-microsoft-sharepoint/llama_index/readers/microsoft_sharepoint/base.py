@@ -58,10 +58,7 @@ class SharePointReader(BaseReader):
             "resource": "https://graph.microsoft.com/",
         }
 
-        response = requests.post(
-            url=authority,
-            data=payload,
-        timeout=60)
+        response = requests.post(url=authority, data=payload, timeout=60)
 
         if response.status_code == 200 and "access_token" in response.json():
             return response.json()["access_token"]
@@ -91,7 +88,8 @@ class SharePointReader(BaseReader):
         response = requests.get(
             url=site_information_endpoint,
             headers=self._authorization_headers,
-        timeout=60)
+            timeout=60,
+        )
 
         if response.status_code == 200 and "value" in response.json():
             if (
@@ -122,9 +120,8 @@ class SharePointReader(BaseReader):
         self._drive_id_endpoint = f"https://graph.microsoft.com/v1.0/sites/{self._site_id_with_host_name}/drives"
 
         response = requests.get(
-            url=self._drive_id_endpoint,
-            headers=self._authorization_headers,
-        timeout=60)
+            url=self._drive_id_endpoint, headers=self._authorization_headers, timeout=60
+        )
 
         if response.status_code == 200 and "value" in response.json():
             if (
@@ -155,9 +152,8 @@ class SharePointReader(BaseReader):
         )
 
         response = requests.get(
-            url=folder_id_endpoint,
-            headers=self._authorization_headers,
-        timeout=60)
+            url=folder_id_endpoint, headers=self._authorization_headers, timeout=60
+        )
 
         if response.status_code == 200 and "id" in response.json():
             return response.json()["id"]
@@ -189,9 +185,8 @@ class SharePointReader(BaseReader):
         )
 
         response = requests.get(
-            url=folder_info_endpoint,
-            headers=self._authorization_headers,
-        timeout=60)
+            url=folder_info_endpoint, headers=self._authorization_headers, timeout=60
+        )
 
         if response.status_code == 200:
             data = response.json()

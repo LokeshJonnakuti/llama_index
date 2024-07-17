@@ -61,7 +61,9 @@ class MacrometaGDNReader(BaseReader):
             "ttl": 60,
             "query": "FOR doc IN " + collection_name + " RETURN doc",
         }
-        response = requests.post(url, headers=headers, data=json.dumps(data), timeout=60)
+        response = requests.post(
+            url, headers=headers, data=json.dumps(data), timeout=60
+        )
         response_json = response.json()
         if response.status_code == 201:
             all_documents.extend(response_json.get("result", []))

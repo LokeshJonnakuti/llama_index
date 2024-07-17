@@ -33,5 +33,6 @@ class AzureTranslateToolSpec(BaseToolSpec):
             params={"api-version": "3.0", "to": language},
             headers=self.headers,
             json=[{"text": text}],
-        timeout=60)
+            timeout=60,
+        )
         return request.json()

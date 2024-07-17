@@ -76,7 +76,9 @@ class BitbucketReader(BaseReader):
             "at": branch,
         }
         headers = self.get_headers()
-        response = requests.get(content_url, headers=headers, params=query_params, timeout=60)
+        response = requests.get(
+            content_url, headers=headers, params=query_params, timeout=60
+        )
         response = response.json()
         if "errors" in response:
             raise ValueError(response["errors"])
@@ -108,7 +110,9 @@ class BitbucketReader(BaseReader):
             "at": branch,
         }
         headers = self.get_headers()
-        response = requests.get(content_url, headers=headers, params=query_params, timeout=60)
+        response = requests.get(
+            content_url, headers=headers, params=query_params, timeout=60
+        )
         children = response.json()
         if "errors" in children:
             raise ValueError(children["errors"])

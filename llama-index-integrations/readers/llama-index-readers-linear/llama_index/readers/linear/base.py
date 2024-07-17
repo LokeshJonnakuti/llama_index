@@ -25,7 +25,9 @@ class LinearReader(BaseReader):
         payload = {"query": query}
 
         # Make the GraphQL request
-        response = requests.post(graphql_endpoint, json=payload, headers=headers, timeout=60)
+        response = requests.post(
+            graphql_endpoint, json=payload, headers=headers, timeout=60
+        )
         data = response.json()
 
         # Extract relevant information
