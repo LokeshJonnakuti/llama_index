@@ -2,7 +2,7 @@ import base64
 import logging
 from typing import List, Sequence
 
-import requests
+from security import safe_requests
 
 from llama_index.legacy.schema import ImageDocument
 
@@ -41,7 +41,7 @@ def image_documents_to_base64(
         ):
             image_encodings.append(encode_image(image_document.metadata["file_path"]))
         elif image_document.image_url:
-            response = requests.get(image_document.image_url)
+            response = safe_requests.get(image_document.image_url)
             try:
                 image_encodings.append(
                     base64.b64encode(response.content).decode("utf-8")

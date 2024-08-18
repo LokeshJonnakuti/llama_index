@@ -6,8 +6,8 @@ from collections import Counter
 from shutil import rmtree
 from typing import Any, Dict, List, Optional, Tuple
 
-import requests
 import tqdm
+from security import safe_requests
 
 from llama_index.legacy.core.base_query_engine import BaseQueryEngine
 from llama_index.legacy.core.base_retriever import BaseRetriever
@@ -37,7 +37,7 @@ class HotpotQAEvaluator:
                 save_file = open(
                     os.path.join(dataset_full_path, "dev_distractor.json"), "wb"
                 )
-                response = requests.get(url, stream=True)
+                response = safe_requests.get(url, stream=True)
 
                 # Define the size of each chunk
                 chunk_size = 1024

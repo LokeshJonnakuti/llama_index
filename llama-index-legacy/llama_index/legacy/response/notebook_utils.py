@@ -5,9 +5,9 @@ from io import BytesIO
 from typing import Any, Dict, List, Tuple
 
 import matplotlib.pyplot as plt
-import requests
 from IPython.display import Markdown, display
 from PIL import Image
+from security import safe_requests
 
 from llama_index.legacy.core.response.schema import Response
 from llama_index.legacy.img_utils import b64_2_img
@@ -126,7 +126,7 @@ def display_query_and_multimodal_response(
         img_node = scored_img_node.node
         image = None
         if img_node.image_url:
-            img_response = requests.get(img_node.image_url)
+            img_response = safe_requests.get(img_node.image_url)
             image = Image.open(BytesIO(img_response.content))
         elif img_node.image_path:
             image = Image.open(img_node.image_path).convert("RGB")

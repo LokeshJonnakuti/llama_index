@@ -3,7 +3,7 @@
 import logging
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
-import requests
+from security import safe_requests
 
 from llama_index.legacy.bridge.pydantic import PrivateAttr
 from llama_index.legacy.readers.base import BasePydanticReader
@@ -63,7 +63,7 @@ class SimpleWebPageReader(BasePydanticReader):
             raise ValueError("urls must be a list of strings.")
         documents = []
         for url in urls:
-            response = requests.get(url, headers=None).text
+            response = safe_requests.get(url, headers=None).text
             if self.html_to_text:
                 import html2text
 
@@ -176,8 +176,6 @@ class BeautifulSoupWebReader(BasePydanticReader):
         """Initialize with parameters."""
         try:
             from urllib.parse import urlparse  # noqa
-
-            import requests  # noqa
             from bs4 import BeautifulSoup  # noqa
         except ImportError:
             raise ImportError(
@@ -208,13 +206,12 @@ class BeautifulSoupWebReader(BasePydanticReader):
         """
         from urllib.parse import urlparse
 
-        import requests
         from bs4 import BeautifulSoup
 
         documents = []
         for url in urls:
             try:
-                page = requests.get(url)
+                page = safe_requests.get(url)
             except Exception:
                 raise ValueError(f"One of the inputs is not a valid url: {url}")
 
