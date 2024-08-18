@@ -4,11 +4,12 @@ import logging
 import os
 from typing import List, Optional
 
+from security import safe_requests
+
 from llama_index.legacy.callbacks.base import CallbackManager
 from llama_index.legacy.core.base_retriever import BaseRetriever
 from llama_index.legacy.indices.query.schema import QueryBundle
 from llama_index.legacy.schema import NodeWithScore, QueryBundle, TextNode
-from security import safe_requests
 
 logger = logging.getLogger(__name__)
 

@@ -7,12 +7,12 @@ from typing import Any, Dict, List, Tuple
 import matplotlib.pyplot as plt
 from IPython.display import Markdown, display
 from PIL import Image
+from security import safe_requests
 
 from llama_index.legacy.core.response.schema import Response
 from llama_index.legacy.img_utils import b64_2_img
 from llama_index.legacy.schema import ImageNode, MetadataMode, NodeWithScore
 from llama_index.legacy.utils import truncate_text
-from security import safe_requests
 
 DEFAULT_THUMBNAIL_SIZE = (512, 512)
 DEFAULT_IMAGE_MATRIX = (3, 3)

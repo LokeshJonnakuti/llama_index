@@ -34,7 +34,9 @@ class RequestsToolSpec(BaseToolSpec):
         if not self._valid_url(url):
             return INVALID_URL_PROMPT
 
-        res = safe_requests.get(url, headers=self._get_headers_for_url(url), params=params)
+        res = safe_requests.get(
+            url, headers=self._get_headers_for_url(url), params=params
+        )
         return res.json()
 
     def post_request(self, url: str, data: Optional[dict] = {}):

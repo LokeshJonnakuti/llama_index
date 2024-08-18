@@ -70,7 +70,6 @@ class IntercomReader(BaseReader):
         return articles
 
     def get_articles_page(self, next_page: str = None):
-
         if next_page is None:
             url = "https://api.intercom.io/articles"
         else:

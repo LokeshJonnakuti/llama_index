@@ -1,5 +1,7 @@
 import os
 from typing import Any, Callable, Dict, Optional, Sequence
+
+from security import safe_requests
 from tqdm import tqdm
 
 from llama_index.legacy.bridge.pydantic import Field, PrivateAttr
@@ -25,7 +27,6 @@ from llama_index.legacy.llms.generic_utils import (
 )
 from llama_index.legacy.types import BaseOutputParser, PydanticProgramMode
 from llama_index.legacy.utils import get_cache_dir
-from security import safe_requests
 
 DEFAULT_LLAMA_CPP_GGML_MODEL = (
     "https://huggingface.co/TheBloke/Llama-2-13B-chat-GGML/resolve"

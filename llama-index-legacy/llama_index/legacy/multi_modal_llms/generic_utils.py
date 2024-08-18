@@ -2,8 +2,9 @@ import base64
 import logging
 from typing import List, Sequence
 
-from llama_index.legacy.schema import ImageDocument
 from security import safe_requests
+
+from llama_index.legacy.schema import ImageDocument
 
 logger = logging.getLogger(__name__)
 

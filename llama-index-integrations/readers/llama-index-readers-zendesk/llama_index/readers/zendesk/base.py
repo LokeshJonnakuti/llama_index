@@ -72,7 +72,6 @@ class ZendeskReader(BaseReader):
         return articles
 
     def get_articles_page(self, next_page: str = None):
-
         if next_page is None:
             url = f"https://{self.zendesk_subdomain}.zendesk.com/api/v2/help_center/{self.locale}/articles?per_page=100"
         else:

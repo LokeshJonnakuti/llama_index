@@ -3,10 +3,11 @@
 import logging
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
+from security import safe_requests
+
 from llama_index.legacy.bridge.pydantic import PrivateAttr
 from llama_index.legacy.readers.base import BasePydanticReader
 from llama_index.legacy.schema import Document
-from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
@@ -204,6 +205,7 @@ class BeautifulSoupWebReader(BasePydanticReader):
 
         """
         from urllib.parse import urlparse
+
         from bs4 import BeautifulSoup
 
         documents = []
