@@ -20,6 +20,7 @@ from llama_index.core.indices.managed.base import (
 from llama_index.core.schema import BaseNode, Document
 from llama_index.core.service_context import ServiceContext
 from llama_index.core.storage.storage_context import StorageContext
+from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
@@ -168,7 +169,7 @@ class ZillizCloudPipelineIndex(BaseManagedIndex):
         url = f"{self.domain}?projectId={self.project_id}"
 
         # Get pipelines
-        response = requests.get(url, headers=self.headers)
+        response = safe_requests.get(url, headers=self.headers)
         if response.status_code != 200:
             raise RuntimeError(response.text)
         response_dict = response.json()
