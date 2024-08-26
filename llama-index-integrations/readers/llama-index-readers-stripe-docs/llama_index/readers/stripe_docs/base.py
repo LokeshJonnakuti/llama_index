@@ -45,7 +45,9 @@ class StripeDocsReader(BaseReader):
             sitemap_partition_urls.append(loc)
 
         for sitemap_partition_url in sitemap_partition_urls:
-            sitemap_partition = defusedxml.ElementTree.fromstring(self._load_url(sitemap_partition_url))
+            sitemap_partition = defusedxml.ElementTree.fromstring(
+                self._load_url(sitemap_partition_url)
+            )
 
             # Find all <url /> and iterate through them
             for url in sitemap_partition.findall(f"{{{XML_SITEMAP_SCHEMA}}}url"):
