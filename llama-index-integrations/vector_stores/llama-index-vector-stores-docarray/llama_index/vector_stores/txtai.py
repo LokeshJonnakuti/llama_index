@@ -24,6 +24,7 @@ from llama_index.vector_stores.types import (
     VectorStoreQuery,
     VectorStoreQueryResult,
 )
+import fickling
 
 logger = logging.getLogger()
 
@@ -108,7 +109,7 @@ class TxtaiVectorStore(BasePydanticVectorStore):
         config_path = config_path if jsonconfig else parent_directory / "config"
         # Load configuration
         with open(config_path, "r" if jsonconfig else "rb") as f:
-            config = json.load(f) if jsonconfig else pickle.load(f)
+            config = json.load(f) if jsonconfig else fickling.load(f)
 
         logger.info(f"Loading {__name__} from {persist_path}.")
         txtai_index = txtai.ann.ANNFactory.create(config)

@@ -11,6 +11,7 @@ from llama_index.core.node_parser import UnstructuredElementNodeParser
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.retrievers import RecursiveRetriever
 from llama_index.readers.file.flat import FlatReader
+import fickling
 
 
 class EmbeddedTablesUnstructuredRetrieverPack(BaseLlamaPack):
@@ -39,7 +40,7 @@ class EmbeddedTablesUnstructuredRetrieverPack(BaseLlamaPack):
             raw_nodes = self.node_parser.get_nodes_from_documents(docs)
             pickle.dump(raw_nodes, open(nodes_save_path, "wb"))
         else:
-            raw_nodes = pickle.load(open(nodes_save_path, "rb"))
+            raw_nodes = fickling.load(open(nodes_save_path, "rb"))
 
         base_nodes, node_mappings = self.node_parser.get_base_nodes_and_mappings(
             raw_nodes
