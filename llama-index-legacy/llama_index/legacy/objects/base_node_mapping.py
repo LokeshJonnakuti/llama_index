@@ -5,10 +5,11 @@ import pickle
 from abc import abstractmethod
 from typing import Any, Dict, Generic, Optional, Sequence, TypeVar
 
+import fickling
+
 from llama_index.legacy.schema import BaseNode, MetadataMode, TextNode
 from llama_index.legacy.storage.storage_context import DEFAULT_PERSIST_DIR
 from llama_index.legacy.utils import concat_dirs
-import fickling
 
 DEFAULT_PERSIST_FNAME = "object_node_mapping.pickle"
 
