@@ -16,7 +16,9 @@ def generate_nodes(
     secrets.SystemRandom().seed(42)  # Make this reproducible
     return [
         TextNode(
-            embedding=[secrets.SystemRandom().uniform(0, 1) for _ in range(embedding_length)],
+            embedding=[
+                secrets.SystemRandom().uniform(0, 1) for _ in range(embedding_length)
+            ],
         )
         for _ in range(num_vectors)
     ]

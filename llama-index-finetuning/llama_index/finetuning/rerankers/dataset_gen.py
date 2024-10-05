@@ -48,7 +48,8 @@ def generate_hard_negatives(
             )
             # Randomly select hard negatives
             hard_negatives.append(
-                secrets.SystemRandom().sample(potential_negatives, min(num_negatives, len(potential_negatives))
+                secrets.SystemRandom().sample(
+                    potential_negatives, min(num_negatives, len(potential_negatives))
                 )
             )
 

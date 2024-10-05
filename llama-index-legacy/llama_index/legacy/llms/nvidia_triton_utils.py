@@ -1,5 +1,6 @@
 import abc
 import json
+import secrets
 import time
 from functools import partial
 from queue import Queue
@@ -14,7 +15,6 @@ from typing import (
 )
 
 import numpy as np
-import secrets
 
 if TYPE_CHECKING:
     import tritonclient.grpc as grpcclient

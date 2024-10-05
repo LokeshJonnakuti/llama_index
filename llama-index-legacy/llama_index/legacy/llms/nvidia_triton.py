@@ -1,3 +1,4 @@
+import secrets
 from typing import (
     Any,
     Dict,
@@ -23,7 +24,6 @@ from llama_index.legacy.llms.generic_utils import (
 )
 from llama_index.legacy.llms.llm import LLM
 from llama_index.legacy.llms.nvidia_triton_utils import GrpcTritonClient
-import secrets
 
 DEFAULT_SERVER_URL = "localhost:8001"
 DEFAULT_MAX_RETRIES = 3
