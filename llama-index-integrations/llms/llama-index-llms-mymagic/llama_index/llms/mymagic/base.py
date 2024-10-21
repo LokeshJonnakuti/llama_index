@@ -91,14 +91,14 @@ class MyMagicAI(LLM):
     def _submit_question_sync(self, question_data: Dict[str, Any]) -> Dict[str, Any]:
         """Submits a question to the model synchronously."""
         url = f"{self._construct_url(self.model)}/submit_question"
-        resp = requests.post(url, json=question_data)
+        resp = requests.post(url, json=question_data, timeout=60)
         resp.raise_for_status()
         return resp.json()
 
     def _get_result_sync(self, task_id: str) -> Dict[str, Any]:
         """Polls for the result of a task synchronously."""
         url = f"{self._construct_url(self.model)}/get_result/{task_id}"
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         response.raise_for_status()
         return response.json()
 
