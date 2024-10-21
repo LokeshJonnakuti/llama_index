@@ -44,7 +44,8 @@ class CogniswitchQueryEngine(BaseQueryEngine):
             headers=self.headers,
             verify=False,
             data=data,
-        timeout=60)
+            timeout=60,
+        )
         if response.status_code == 200:
             resp = response.json()
             answer = resp["data"]["answer"]

@@ -89,7 +89,9 @@ class FeishuDocsReader(BaseReader):
         url = self.host + self.tenant_access_token_internal_url_path
         headers = {"Content-Type": "application/json; charset=utf-8"}
         data = {"app_id": self.app_id, "app_secret": self.app_secret}
-        response = requests.post(url, data=json.dumps(data), headers=headers, timeout=60)
+        response = requests.post(
+            url, data=json.dumps(data), headers=headers, timeout=60
+        )
         self.tenant_access_token = response.json()["tenant_access_token"]
         self.expire = time.time() + response.json()["expire"]
 

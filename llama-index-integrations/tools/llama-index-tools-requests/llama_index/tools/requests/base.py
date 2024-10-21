@@ -33,7 +33,9 @@ class RequestsToolSpec(BaseToolSpec):
         if not self._valid_url(url):
             return INVALID_URL_PROMPT
 
-        res = requests.get(url, headers=self._get_headers_for_url(url), params=params, timeout=60)
+        res = requests.get(
+            url, headers=self._get_headers_for_url(url), params=params, timeout=60
+        )
         return res.json()
 
     def post_request(self, url: str, data: Optional[dict] = {}):
@@ -48,7 +50,9 @@ class RequestsToolSpec(BaseToolSpec):
         if not self._valid_url(url):
             return INVALID_URL_PROMPT
 
-        res = requests.post(url, headers=self._get_headers_for_url(url), json=data, timeout=60)
+        res = requests.post(
+            url, headers=self._get_headers_for_url(url), json=data, timeout=60
+        )
         return res.json()
 
     def patch_request(self, url: str, data: Optional[dict] = {}):
@@ -63,7 +67,9 @@ class RequestsToolSpec(BaseToolSpec):
         if not self._valid_url(url):
             return INVALID_URL_PROMPT
 
-        requests.patch(url, headers=self._get_headers_for_url(url), json=data, timeout=60)
+        requests.patch(
+            url, headers=self._get_headers_for_url(url), json=data, timeout=60
+        )
         return None
 
     def _valid_url(self, url: str) -> bool:
