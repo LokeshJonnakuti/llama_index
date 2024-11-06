@@ -13,7 +13,9 @@ class PDFNougatOCR(BaseReader):
         cli_command = ["nougat", "--markdown", "pdf", str(file_path), "--out", "output"]
 
         try:
-            result = safe_command.run(subprocess.run, cli_command, capture_output=True, text=True)
+            result = safe_command.run(
+                subprocess.run, cli_command, capture_output=True, text=True
+            )
             result.check_returncode()
             return result.stdout
 
