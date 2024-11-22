@@ -4,7 +4,9 @@ import json
 import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
+
 import tqdm
+from security import safe_requests
 
 from llama_index.legacy.download.module import LLAMA_HUB_URL
 from llama_index.legacy.download.utils import (
@@ -12,7 +14,6 @@ from llama_index.legacy.download.utils import (
     get_file_content_bytes,
     initialize_directory,
 )
-from security import safe_requests
 
 LLAMA_DATASETS_LFS_URL = (
     f"https://media.githubusercontent.com/media/run-llama/llama-datasets/main"

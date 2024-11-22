@@ -29,7 +29,6 @@ class MemosReader(BaseReader):
             List[Document]: List of documents.
 
         """
-
         documents = []
         realUrl = self._memoUrl
 

@@ -9,6 +9,7 @@ import logging
 from typing import Any, Dict, Optional, Sequence, Type
 
 import requests
+from security import safe_requests
 
 from llama_index.legacy.core.base_retriever import BaseRetriever
 from llama_index.legacy.data_structs.data_structs import IndexDict, IndexStructType
@@ -16,7 +17,6 @@ from llama_index.legacy.indices.managed.base import BaseManagedIndex, IndexType
 from llama_index.legacy.schema import BaseNode, Document
 from llama_index.legacy.service_context import ServiceContext
 from llama_index.legacy.storage.storage_context import StorageContext
-from security import safe_requests
 
 logger = logging.getLogger(__name__)
 

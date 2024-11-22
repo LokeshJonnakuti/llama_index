@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from typing import List, Optional, Tuple
+
 from security import safe_requests
 
 

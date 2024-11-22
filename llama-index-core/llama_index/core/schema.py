@@ -481,7 +481,6 @@ class ImageNode(TextNode):
         elif self.image_path is not None:
             return self.image_path
         elif self.image_url is not None:
-
             response = safe_requests.get(self.image_url)
             return BytesIO(response.content)
         else:

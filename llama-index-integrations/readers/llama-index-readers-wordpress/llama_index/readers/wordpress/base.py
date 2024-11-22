@@ -74,7 +74,6 @@ class WordpressReader(BaseReader):
         return posts
 
     def get_posts_page(self, current_page: int = 1):
-
         url = f"{self.url}/wp-json/wp/v2/posts?per_page=100&page={current_page}"
 
         response = safe_requests.get(url)
