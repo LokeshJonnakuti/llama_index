@@ -9,6 +9,7 @@ import logging
 from typing import Any, Dict, Optional, Sequence, Type
 
 import requests
+from security import safe_requests
 
 from llama_index.legacy.core.base_retriever import BaseRetriever
 from llama_index.legacy.data_structs.data_structs import IndexDict, IndexStructType
@@ -164,7 +165,7 @@ class ZillizCloudPipelineIndex(BaseManagedIndex):
         url = f"{self.domain}?projectId={self.project_id}"
 
         # Get pipelines
-        response = requests.get(url, headers=self.headers)
+        response = safe_requests.get(url, headers=self.headers)
         if response.status_code != 200:
             raise RuntimeError(response.text)
         response_dict = response.json()

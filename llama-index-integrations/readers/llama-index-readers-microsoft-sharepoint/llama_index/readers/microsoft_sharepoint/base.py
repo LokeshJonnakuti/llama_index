@@ -9,6 +9,7 @@ import requests
 from llama_index.core.readers import SimpleDirectoryReader
 from llama_index.core.readers.base import BaseReader
 from llama_index.core.schema import Document
+from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
@@ -88,7 +89,7 @@ class SharePointReader(BaseReader):
         )
         self._authorization_headers = {"Authorization": f"Bearer {access_token}"}
 
-        response = requests.get(
+        response = safe_requests.get(
             url=site_information_endpoint,
             headers=self._authorization_headers,
         )
@@ -121,7 +122,7 @@ class SharePointReader(BaseReader):
         """
         self._drive_id_endpoint = f"https://graph.microsoft.com/v1.0/sites/{self._site_id_with_host_name}/drives"
 
-        response = requests.get(
+        response = safe_requests.get(
             url=self._drive_id_endpoint,
             headers=self._authorization_headers,
         )
@@ -154,7 +155,7 @@ class SharePointReader(BaseReader):
             f"{self._drive_id_endpoint}/{self._drive_id}/root:/{folder_path}"
         )
 
-        response = requests.get(
+        response = safe_requests.get(
             url=folder_id_endpoint,
             headers=self._authorization_headers,
         )
@@ -188,7 +189,7 @@ class SharePointReader(BaseReader):
             f"{self._drive_id_endpoint}/{self._drive_id}/items/{folder_id}/children"
         )
 
-        response = requests.get(
+        response = safe_requests.get(
             url=folder_info_endpoint,
             headers=self._authorization_headers,
         )
@@ -230,7 +231,7 @@ class SharePointReader(BaseReader):
         file_download_url = item["@microsoft.graph.downloadUrl"]
         file_name = item["name"]
 
-        response = requests.get(file_download_url)
+        response = safe_requests.get(file_download_url)
 
         # Create the directory if it does not exist and save the file.
         if not os.path.exists(download_dir):

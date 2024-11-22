@@ -8,6 +8,7 @@ from typing import List
 import requests
 from llama_index.core.readers.base import BaseReader
 from llama_index.core.schema import Document
+from security import safe_requests
 
 logging.basicConfig(level=logging.ERROR)
 
@@ -39,7 +40,7 @@ class OpenAlexReader(BaseReader):
         email_param = f"&mailto={self.email}"
         full_url = base_url + query + fields_param + email_param
         try:
-            response = requests.get(full_url, timeout=10)
+            response = safe_requests.get(full_url, timeout=10)
             response.raise_for_status()  # Check if request is successful
             data = response.json()  # Parse JSON data
             if "error" in data:
@@ -59,7 +60,7 @@ class OpenAlexReader(BaseReader):
         email_param = f"&mailto={self.email}"
         full_url = base_url + query + fields_param + email_param
         try:
-            response = requests.get(full_url, timeout=10)
+            response = safe_requests.get(full_url, timeout=10)
             response.raise_for_status()  # Check if request is successful
             data = response.json()  # Parse JSON data
             if "error" in data:
